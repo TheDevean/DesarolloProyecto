@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active" [ngClass]="{'active': tabSelected == 'create'}">
+    <a href="#" routerLink="/sales" (click)="tabSelected = 'create'">Crear Pedido</a>
+  </li>
+  <li role="presentation" [ngClass]="{'active': tabSelected == 'list'}">
+    <a href="#" routerLink="/sales" (click)="tabSelected = 'list'">Lista de Pedidos</a>
+  </li>
+</ul>
+<br>
+ 
+ 
+<div [ngSwitch]="tabSelected">
+  <div *ngSwitchCase="'create'">
+    <app-sales-create></app-sales-create>
+  </div>
+  <div *ngSwitchCase="'list'">
+    <app-sales-list></app-sales-list>
+  </div>
+</div>

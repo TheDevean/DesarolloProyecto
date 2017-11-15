@@ -1,0 +1,180 @@
+<div class="containerX">
+  <div fxLayout="row wrap">
+    <div fxFlex="50%">
+
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label for="lastName">Nombre</label>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                  (click)="onFindClients()"
+                  data-toggle="modal"
+                  data-target="#clientsModal">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </span>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" [(ngModel)]="sale.client.name">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label for="lastName">Apellido</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellido" [(ngModel)]="sale.client.lastName">
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="email">Correo Electronico</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="sale.client.email">
+          </div>
+        </div>
+    </div>
+
+    <div fxFlex="50%">
+
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="street">Calle</label>
+            <input type="text" class="form-control" id="street" name="street" placeholder="Calle" [(ngModel)]="sale.address.street">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label for="city">Ciudad</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad" [(ngModel)]="sale.address.city">
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label for="zip">Codigo Postal</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="Codigo Postal" [(ngModel)]="sale.address.zip">
+          </div>
+        </div>
+    </div>
+
+    <div fxFlex="100%">
+
+        <button type="button" class="btn btn-sm btn-default pull-right" (click)="onFindItems()" data-toggle="modal" data-target="#itemsModal">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+
+        <button md-raised-button (click)="onFindItems()" data-toggle="modal" data-target="#itemsModal">Agregar Productos</button>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Marca</th>
+              <th style="width:150px">Precio Unitario</th>
+              <th style="width:100px">Cantidad</th>
+              <th style="width:100px">Costo</th>
+              <th style="width:50px"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of sale.items; let i = index">
+              <td>{{item.name}}</td>
+              <td>{{item.brand}}</td>
+              <td>{{item.price | currency:'USD':true}}</td>
+              <td>
+                <input type="text" class="form-control input-sm" name="zip" [(ngModel)]="item.quantity">
+              </td>
+              <td>{{item.quantity * item.price | currency:'USD':true}}</td>
+              <td>
+                <button type="button" class="btn btn-sm btn-danger" (click)="onDeleteItem(i)">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+<button md-raised-button color="primary" (click)="onSave(sale)">Guardar</button>
+
+<div id="clientsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="clientsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="clientsModalLabel">Clientes</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-controls">
+            <div class="input-group input-group">
+              <input type="text" class="form-control" placeholder="filtrar" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn btn-default"
+                    data-toggle="modal"
+                    (click)="onFindClients()">
+                    <i [ngClass]="{'fa-refresh-animate': isLoading}" class="fa fa-refresh" aria-hidden="true"></i>
+                  </button>
+                </span>
+            </div>
+          </div>
+
+          <div class="list-group">
+            <a data-dismiss="modal" class="list-group-item" *ngFor="let client of clients " (click)="onSelectClient(client)">
+              <span *ngIf="client.selected"  class="badge">1</span>
+              {{client.name }} {{client.lastName}}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div id="itemsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="itemsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="itemsModalLabel">Productos</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-controls">
+            <div class="input-group input-group">
+              <input type="text" class="form-control" placeholder="filtrar" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+              <span class="input-group-btn">
+                  <button type="button" class="btn btn btn-default"
+                    data-toggle="modal"
+                    (click)="onFindItems()">
+                    <i [ngClass]="{'fa-refresh-animate': isLoading}" class="fa fa-refresh" aria-hidden="true"></i>
+                  </button>
+                </span>
+            </div>
+          </div>
+
+          <div class="list-group">
+            <a class="list-group-item" *ngFor="let item of items " (click)="onSelectItem(item)">
+              <span *ngIf="item.selected"  class="badge"> {{item.quantity}}</span>
+              {{item.id}}  - {{item.name}} - [ {{item.brand}}]
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

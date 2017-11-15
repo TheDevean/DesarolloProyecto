@@ -1,0 +1,35 @@
+<h2>Lista de Ventas</h2>
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+    <input type="text" class="form-control" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+</div>
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Client</th>
+      <th>Address</th>
+      <th>Items</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sales of sales | filter:flt; let indx = index " >
+      <td>{{sales.order}}</td>
+      <td>{{sales.date | date}}</td>
+      <td>{{sales.total}}</td>
+      <td>{{sales.client.name}}
+          {{sales.client.lastName}}
+          {{sales.client.email}}</td>
+      <td>{{sales.address.street}}
+          {{sales.address.city}}
+          {{sales.address.zip}}</td>
+      <td> <span *ngFor= "let item of sales.items | filter:flt; let indx = index" >{{item.name}},</span></td>
+      <td><button type="button" class="btn btn-sm btn-primary" (click)="onEdit(item)" data-toggle="modal" data-target="#salesModal">Editar </button></td>
+      <td><button type="button" class="btn btn-sm btn-danger"  (click)="onDelete(indx)">Eliminar </button></td>
+    </tr>
+  </tbody>
+</table>

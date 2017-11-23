@@ -3,6 +3,7 @@ const router        = express.Router();
 const ClientsDAO    = require('../dao/clients.dao');
 const ProductsDAO   = require('../dao/products.dao');
 const SalesDAO      = require('../dao/sales.dao');
+const UserDAO      = require('../dao/user.dao');
  
 router.all('*', function(req, res, next){
   console.log("[api]", req.method, req.url);
@@ -39,5 +40,11 @@ router.get('/api/sales', SalesDAO.find);
 router.post('/api/sales', SalesDAO.insertOne);
 router.put('/api/sales', SalesDAO.updateOne);
 router.delete('/api/sales/:id', SalesDAO.deleteOne);
- 
+
+
+//Users
+router.get('/api/user/:email', UserDAO.findByEmail);
+router.get('/api/user/:id', UserDAO.findByID);
+
+
 module.exports = router;

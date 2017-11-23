@@ -1,14 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
-
 const ObjectID = require('mongodb').ObjectID;
-
 const q = require("q");
 
 
 
-//const url = 'mongodb://david2:h0YjPfsskNUwBmgd@mongodb-shard-00-00-gmsvp.mongodb.net:27017,mongodb-shard-00-01-gmsvp.mongodb.net:27017,mongodb-shard-00-02-gmsvp.mongodb.net:27017/test?ssl=true&replicaSet=MongoDB-shard-0&authSource=admin';
+const url = 'mongodb://david2:h0YjPfsskNUwBmgd@mongodb-shard-00-00-gmsvp.mongodb.net:27017,mongodb-shard-00-01-gmsvp.mongodb.net:27017,mongodb-shard-00-02-gmsvp.mongodb.net:27017/test?ssl=true&replicaSet=MongoDB-shard-0&authSource=admin';
 
-const url = 'mongodb://localhost:27017/app';
+//const url = 'mongodb://localhost:27017/app';
 
 
 
@@ -254,32 +252,23 @@ const MongoModule = {
 
 
     connection((db) => {
-
       db.collection(collection)
-
         .deleteOne({
           _id: new ObjectID(id)
         })
-
         .then((obj) => {
-
           deferred.resolve({
             "status": 200,
             "body": obj
           });
-
           db.close();
-
         })
-
         .catch((err) => {
-
           deferred.reject({
             "status": 500,
             "body": {},
             "error": err
           });
-
           db.close();
 
         });

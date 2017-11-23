@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const path       = require('path');
 const app        = express();
 const api        = require('./server/routes/api');
+const passportlocal        = require('./server/passport/passport');
+var passport = require('passport');
+
 
 app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
@@ -37,3 +40,10 @@ var server = app.listen(app.get('port'), function() {
 
 console.log("[app] Routes APIs ");
 app.use(api);
+
+
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passportlocal);

@@ -34,6 +34,7 @@ router.get('/api/products', ProductsDAO.find);
 router.post('/api/products', ProductsDAO.insertOne);
 router.put('/api/products', ProductsDAO.updateOne);
 router.delete('/api/products/:id', ProductsDAO.deleteOne);
+router.get('/api/product/:name', ProductsDAO.findbyname);
  
 // Sales
 router.get('/api/sales', SalesDAO.find);

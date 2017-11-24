@@ -27,6 +27,7 @@ router.get('/api/clients', ClientsDAO.find);
 router.post('/api/clients', ClientsDAO.insertOne);
 router.put('/api/clients', ClientsDAO.updateOne);
 router.delete('/api/clients/:id', ClientsDAO.deleteOne);
+router.get('/api/client/:name', ClientsDAO.findbyname);
  
 // Products
 router.get('/api/products', ProductsDAO.find);

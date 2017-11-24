@@ -58,4 +58,13 @@ export class InventoryComponent implements OnInit {
       this.onFind();
     });
   }
+  
+  updateproducts(search){
+    
+    console.log(search);
+        this.inventoryService.findbyname(search).subscribe((res:any) => {
+        this.items = res.body;
+        console.log(res.body);
+        });
+      }
 }

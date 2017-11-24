@@ -59,4 +59,13 @@ export class ClientsComponent implements OnInit {
       this.onFind();
     });
   }
+  
+  updateclients(search){
+    
+    console.log(search);
+        this.clientService.findbyname(search).subscribe((res:any) => {
+        this.clients = res.body;
+        console.log(res.body);
+        });
+      }
 }

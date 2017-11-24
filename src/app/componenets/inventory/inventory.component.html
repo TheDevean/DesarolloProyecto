@@ -2,6 +2,7 @@
 <div class="input-group">
     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
     <input type="text" class="form-control" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+    <button (click)="updateproducts(flt)">Buscar</button>
 </div>
 <table class="table table-inverse">
   <thead>

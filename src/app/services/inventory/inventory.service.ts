@@ -23,5 +23,9 @@ export class InventoryService {
   deleteOne(id){
     return this.http.delete('/api/products/' + id);
   }
+  
+  findbyname(search){
+        return this.http.get('/api/product/' + search);
+    }
 
 }

@@ -37,6 +37,27 @@ var DAO = {
       res.json(error);
     });
   }
+  
+      findbyname: function(req, res){
+        console.log("find:",req.params.name);
+
+    db.find("products", {$or: [
+        {name: req.params.name},
+        {brand: req.params.name},
+        {provider: req.params.name},
+    ]} ).then(function(data){
+
+      console.log("find:");
+
+			res.json(data);
+
+    }).catch(function (error) {
+
+      res.json(error);
+
+    });
+
+  }
 }
 
 module.exports = exports = DAO;

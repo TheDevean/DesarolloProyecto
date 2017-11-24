@@ -78,6 +78,26 @@ var DAO = {
 
     });
 
+  },
+  
+      findbyname: function(req, res){
+        console.log("find:",req.params.name);
+
+    db.find("clients", {$or: [
+        {name: req.params.name},
+        {email: req.params.name},
+    ]} ).then(function(data){
+
+      console.log("find:");
+
+			res.json(data);
+
+    }).catch(function (error) {
+
+      res.json(error);
+
+    });
+
   }
 
 

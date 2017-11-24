@@ -2,7 +2,8 @@
 <h2>Lista de Clientes</h2>
 <div class="input-group">
     <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-    <input type="text" class="form-control" aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt">
+    <input type="text" class="form-control"  aria-describedby="basic-addon1" name="flt" id="flt" [(ngModel)]="flt" placeholder="buscar">
+    <button (click)="updateclients(flt)">Buscar</button>
 </div>
 <table class="table table-inverse">
   <thead>

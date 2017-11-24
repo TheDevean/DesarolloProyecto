@@ -36,7 +36,7 @@ var DAO = {
     }).catch(function (error) {
       res.json(error);
     });
-  }
+  },
   
       findbyname: function(req, res){
         console.log("find:",req.params.name);

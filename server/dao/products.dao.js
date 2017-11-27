@@ -42,9 +42,9 @@ var DAO = {
         console.log("find:",req.params.name);
 
     db.find("products", {$or: [
-        {name: req.params.name},
-        {brand: req.params.name},
-        {provider: req.params.name},
+        {'name': {$regex: '.*' + req.params.name + '.*', $options: 'i'}},
+        {'brand': {$regex: '.*' + req.params.name + '.*', $options: 'i'}},
+        {'provider': {$regex: '.*' + req.params.name + '.*', $options: 'i'}},
     ]} ).then(function(data){
 
       console.log("find:");

@@ -21,15 +21,11 @@ import { AuthenticationGuard } from './guards/authentication.guard';
 import { UsersService } from './services/user/users.service';
 
 var roots = [
-  { path: 'sales', component: SalesComponent },
-  { path: 'clients', component: ClientsComponent },
-  { path: 'inventory', component: InventoryComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'sales', component: SalesComponent, canActivate : [AuthenticationGuard] },
   { path: 'clients', component: ClientsComponent, canActivate : [AuthenticationGuard] },
   { path: 'inventory', component: InventoryComponent, canActivate : [AuthenticationGuard] },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent }
 ];
 

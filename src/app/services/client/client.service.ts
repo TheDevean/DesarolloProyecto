@@ -23,5 +23,9 @@ export class ClientService {
   deleteOne(id){
     return this.http.delete('/api/clients/' + id);
   }
+  
+  findbyname(search){
+        return this.http.get('/api/client/'+search);
+    }
 
 }

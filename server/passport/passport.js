@@ -22,6 +22,8 @@ passport.use('login', new LocalStrategy({
     res.json(error);
   });
 }));
+
+
 //}
 //     User.findOne({ 'username' :  username },
 //       function(err, user) {

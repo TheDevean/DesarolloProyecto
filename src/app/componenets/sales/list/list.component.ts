@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SaleService } from '../../../services/sales/sales.service';
+import { SalesService } from '../../../services/sales/sales.service';
 
 @Component({
   selector: 'app-sales-list',
@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   sales: Array<any>;
   isLoading = false;
 
-  constructor(private SaleService:SaleService) {
+  constructor(private SaleService:SalesService) {
     //this.sales = SaleService.sales;
   }
 

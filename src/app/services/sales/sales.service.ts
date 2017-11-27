@@ -24,6 +24,8 @@ export class SalesService {
     return this.http.put('/api/sales', obj);
   }
 
-
+  deleteOne(id){
+    return this.http.delete('/api/sales/' + id);
+  }
 
 }

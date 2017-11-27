@@ -84,8 +84,8 @@ var DAO = {
         console.log("find:",req.params.name);
 
     db.find("clients", {$or: [
-        {name: req.params.name},
-        {email: req.params.name},
+        {'name': {$regex: '.*' + req.params.name + '.*', $options: 'i'}},
+        {'email': {$regex: '.*' + req.params.name + '.*', $options: 'i'}},
     ]} ).then(function(data){
 
       console.log("find:");

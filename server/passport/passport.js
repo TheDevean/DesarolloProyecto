@@ -8,19 +8,19 @@ passport.use('login', new LocalStrategy({
   },
   function(req, username, password, done) {
     // check in mongo if a user with username exists or not
-  console.log("username",username);
-  db.find("user",{email:username}).then(function(data){
-    console.log("find:");
-    if (data.body){
-              return done(null, data.body);            
-     }
-    else {
-        return done(null, false); 
-    }
-    res.json(data);
-  }).catch(function (error) {
-    res.json(error);
-  });
+  console.log("passportlo",username);
+  // db.find("user",{email:username}).then(function(data){
+  //   console.log("find:");
+  //   if (data.body){
+  //             return done(null, data.body);            
+  //    }
+  //   else {
+  //       return done(null, false); 
+  //   }
+  //   res.json(data);
+  // }).catch(function (error) {
+  //  res.json(error);
+//  });
 }));
 
 

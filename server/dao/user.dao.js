@@ -2,13 +2,7 @@ const express 	= require('express');
 const ObjectID = require('mongodb').ObjectID;
 const db        = require('../database/mongo');
 
-
-
-
-
 var DAO = {
-
-
 
   findByEmail: function(req, res){
     var email = req.params.email;
@@ -30,6 +24,10 @@ var DAO = {
     }).catch(function (error) {
       res.json(error);
     });
+  },
+
+  UserLogin: function(req,res){
+    console.log('user',req.body);
   },
 
   insertOne: function(req, res){

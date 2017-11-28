@@ -28,7 +28,8 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-
+      <button *ngIf="!isLogedin" md-button routerLink="/login">Iniciar Sesion</button>
+      <button *ngIf="isLogedin" md-button (click)="onLogout()" routerLink="/login">Cerrar Sesion</button>
 
     </ul>
 
